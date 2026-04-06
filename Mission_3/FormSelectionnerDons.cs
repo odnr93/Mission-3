@@ -55,6 +55,11 @@ namespace Mission_3
                 form3.Show();
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
