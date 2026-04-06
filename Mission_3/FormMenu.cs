@@ -46,5 +46,11 @@ namespace Mission_3
             FormCreer formCreer = new FormCreer();
             formCreer.Show();
         }
+
+        private void donsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSelectionnerDons formSelectionnerDons = new FormSelectionnerDons();
+            formSelectionnerDons.Show();
+        }
     }
 }

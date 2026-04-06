@@ -70,6 +70,12 @@
     <Compile Include="FormCreer.Designer.cs">
       <DependentUpon>FormCreer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormListeDons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListeDons.Designer.cs">
+      <DependentUpon>FormListeDons.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSelectionner.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,12 @@
     </Compile>
     <Compile Include="FormModifier3.Designer.cs">
       <DependentUpon>FormModifier3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectionnerDons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectionnerDons.Designer.cs">
+      <DependentUpon>FormSelectionnerDons.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSupprimer.cs">
       <SubType>Form</SubType>
@@ -143,6 +155,9 @@
     <EmbeddedResource Include="FormCreer.resx">
       <DependentUpon>FormCreer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormListeDons.resx">
+      <DependentUpon>FormListeDons.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSelectionner.resx">
       <DependentUpon>FormSelectionner.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormModifier3.resx">
       <DependentUpon>FormModifier3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectionnerDons.resx">
+      <DependentUpon>FormSelectionnerDons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSupprimer.resx">
       <DependentUpon>FormSupprimer.cs</DependentUpon>

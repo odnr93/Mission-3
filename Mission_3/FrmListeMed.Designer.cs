@@ -28,112 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomCommercialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idFamilleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.compositionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.effetsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contreIndicationsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.familleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.offrirsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.medicamentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medicamentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoGenerateColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.nomCommercialDataGridViewTextBoxColumn,
-            this.idFamilleDataGridViewTextBoxColumn,
-            this.compositionDataGridViewTextBoxColumn,
-            this.effetsDataGridViewTextBoxColumn,
-            this.contreIndicationsDataGridViewTextBoxColumn,
-            this.familleDataGridViewTextBoxColumn,
-            this.offrirsDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.medicamentBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1075, 342);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nomCommercialDataGridViewTextBoxColumn
-            // 
-            this.nomCommercialDataGridViewTextBoxColumn.DataPropertyName = "nomCommercial";
-            this.nomCommercialDataGridViewTextBoxColumn.HeaderText = "nomCommercial";
-            this.nomCommercialDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nomCommercialDataGridViewTextBoxColumn.Name = "nomCommercialDataGridViewTextBoxColumn";
-            this.nomCommercialDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // idFamilleDataGridViewTextBoxColumn
-            // 
-            this.idFamilleDataGridViewTextBoxColumn.DataPropertyName = "idFamille";
-            this.idFamilleDataGridViewTextBoxColumn.HeaderText = "idFamille";
-            this.idFamilleDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idFamilleDataGridViewTextBoxColumn.Name = "idFamilleDataGridViewTextBoxColumn";
-            this.idFamilleDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // compositionDataGridViewTextBoxColumn
-            // 
-            this.compositionDataGridViewTextBoxColumn.DataPropertyName = "composition";
-            this.compositionDataGridViewTextBoxColumn.HeaderText = "composition";
-            this.compositionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.compositionDataGridViewTextBoxColumn.Name = "compositionDataGridViewTextBoxColumn";
-            this.compositionDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // effetsDataGridViewTextBoxColumn
-            // 
-            this.effetsDataGridViewTextBoxColumn.DataPropertyName = "effets";
-            this.effetsDataGridViewTextBoxColumn.HeaderText = "effets";
-            this.effetsDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.effetsDataGridViewTextBoxColumn.Name = "effetsDataGridViewTextBoxColumn";
-            this.effetsDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // contreIndicationsDataGridViewTextBoxColumn
-            // 
-            this.contreIndicationsDataGridViewTextBoxColumn.DataPropertyName = "contreIndications";
-            this.contreIndicationsDataGridViewTextBoxColumn.HeaderText = "contreIndications";
-            this.contreIndicationsDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.contreIndicationsDataGridViewTextBoxColumn.Name = "contreIndicationsDataGridViewTextBoxColumn";
-            this.contreIndicationsDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // familleDataGridViewTextBoxColumn
-            // 
-            this.familleDataGridViewTextBoxColumn.DataPropertyName = "famille";
-            this.familleDataGridViewTextBoxColumn.HeaderText = "famille";
-            this.familleDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.familleDataGridViewTextBoxColumn.Name = "familleDataGridViewTextBoxColumn";
-            this.familleDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // offrirsDataGridViewTextBoxColumn
-            // 
-            this.offrirsDataGridViewTextBoxColumn.DataPropertyName = "offrirs";
-            this.offrirsDataGridViewTextBoxColumn.HeaderText = "offrirs";
-            this.offrirsDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.offrirsDataGridViewTextBoxColumn.Name = "offrirsDataGridViewTextBoxColumn";
-            this.offrirsDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // medicamentBindingSource
-            // 
-            this.medicamentBindingSource.DataSource = typeof(Mission_3.medicament);
             // 
             // button1
             // 
@@ -164,25 +76,14 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FrmListeMed";
-            this.Text = "FrmListeMed";
+            this.Text = "Liste des médicaments offerts";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medicamentBindingSource)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomCommercialDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idFamilleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn compositionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn effetsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contreIndicationsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn familleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn offrirsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource medicamentBindingSource;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
     }

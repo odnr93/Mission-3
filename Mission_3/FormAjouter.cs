@@ -13,130 +13,101 @@ namespace Mission_3
             InitializeComponent();
         }
 
+        // Au chargement du formulaire
         private void FormAjouter_Load(object sender, EventArgs e)
         {
             ChargerFamilles();
         }
 
+        // Remplit le ComboBox avec les familles de médicaments
         private void ChargerFamilles()
         {
-            var laListe = mesDonnees.familles
-                .Select(f => new {
-                    Affichage = f.libelle,  // affiche le nom de la famille
-                    LaValeur = f.id        // id caché pour la BDD
-                })
-                .OrderBy(f => f.Affichage)
+            var familles = mesDonnees.familles
+                .OrderBy(f => f.libelle)
+                .Select(f => new { Affichage = f.libelle, LaValeur = f.id })
                 .ToList();
 
-            comboBoxFamille.DataSource = laListe;
+            comboBoxFamille.DataSource = familles;
             comboBoxFamille.DisplayMember = "Affichage";
             comboBoxFamille.ValueMember = "LaValeur";
             comboBoxFamille.SelectedIndex = -1;
         }
 
-        private string GenererIdUnique(string nomMedicament)
+        // Génère un ID unique : DOLIPRANE → DOLIPRANE1, DOLIPRANE2...
+        private string GenererIdUnique(string nom)
         {
-            // Prend le nom complet + un chiffre (ex: ADIMOL → ADIMOL1, ADIMOL2...)
-            string base_id = nomMedicament.Trim().ToUpper();
-            string nouvelId;
             int compteur = 1;
+            string id;
 
             do
             {
-                nouvelId = base_id + compteur.ToString();
+                id = nom + compteur;
                 compteur++;
             }
-            while (mesDonnees.medicaments.Any(m => m.id == nouvelId));
+            while (mesDonnees.medicaments.Any(m => m.id == id));
 
-            return nouvelId;
+            return id;
         }
 
+        // Retourne un message d'erreur si un champ est vide, sinon null
+        private string ValiderChamps()
+        {
+            if (comboBoxFamille.SelectedValue == null) return "Veuillez sélectionner une famille.";
+            if (string.IsNullOrWhiteSpace(txtNomMedicament.Text)) return "Veuillez saisir un nom.";
+            if (string.IsNullOrWhiteSpace(txtComposition.Text)) return "Veuillez saisir la composition.";
+            if (string.IsNullOrWhiteSpace(txtEffets.Text)) return "Veuillez saisir les effets.";
+            if (string.IsNullOrWhiteSpace(txtContreIndications.Text)) return "Veuillez saisir les contre-indications.";
+            return null;
+        }
+
+        // Vide tous les champs après un ajout réussi
+        private void ReinitialisierFormulaire()
+        {
+            comboBoxFamille.SelectedIndex = -1;
+            txtNomMedicament.Text = "";
+            txtComposition.Text = "";
+            txtEffets.Text = "";
+            txtContreIndications.Text = "";
+        }
+
+        // Clic sur le bouton "Ajouter"
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            if (comboBoxFamille.SelectedValue == null)
+            // 1. Validation des champs
+            string erreur = ValiderChamps();
+            if (erreur != null)
             {
-                MessageBox.Show("Veuillez sélectionner une famille.", "Erreur",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(erreur, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtNomMedicament.Text))
+            string nom = txtNomMedicament.Text.Trim().ToUpper();
+
+            // 2. Vérifier que le médicament n'existe pas déjà
+            if (mesDonnees.medicaments.Any(m => m.nomCommercial == nom))
             {
-                MessageBox.Show("Veuillez saisir un nom de médicament.", "Erreur",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ce médicament existe déjà.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtComposition.Text))
-            {
-                MessageBox.Show("Veuillez saisir la composition.", "Erreur",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtEffets.Text))
-            {
-                MessageBox.Show("Veuillez saisir les effets.", "Erreur",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtContreIndications.Text))
-            {
-                MessageBox.Show("Veuillez saisir les contre-indications.", "Erreur",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string nomMedicament = txtNomMedicament.Text.Trim().ToUpper();
-
-            // Vérifier que le nom n'existe pas déjà
-            bool nomExiste = mesDonnees.medicaments.Any(m => m.nomCommercial == nomMedicament);
-            if (nomExiste)
-            {
-                MessageBox.Show("Ce médicament existe déjà.", "Erreur",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
+            // 3. Créer et sauvegarder le médicament
             try
             {
-                // Génération automatique de l'ID (ex: ADIMOL → ADIMOL1)
-                string nouvelId = GenererIdUnique(nomMedicament);
-
-                var nouveauMedicament = new medicament
+                var medicament = new medicament
                 {
-                    id = nouvelId,
-                    nomCommercial = nomMedicament,
+                    id = GenererIdUnique(nom),
+                    nomCommercial = nom,
                     idFamille = comboBoxFamille.SelectedValue.ToString(),
                     composition = txtComposition.Text.Trim(),
                     effets = txtEffets.Text.Trim(),
                     contreIndications = txtContreIndications.Text.Trim()
                 };
 
-                mesDonnees.medicaments.Add(nouveauMedicament);
+                mesDonnees.medicaments.Add(medicament);
                 mesDonnees.SaveChanges();
 
-                MessageBox.Show("Médicament ajouté avec succès !", "Succès",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                comboBoxFamille.SelectedIndex = -1;
-                txtNomMedicament.Text = "";
-                txtComposition.Text = "";
-                txtEffets.Text = "";
-                txtContreIndications.Text = "";
-            }
-            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
-            {
-                string erreurs = "";
-                foreach (var eve in ex.EntityValidationErrors)
-                {
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        erreurs += "Champ : " + ve.PropertyName + " → " + ve.ErrorMessage + "\n";
-                    }
-                }
-                MessageBox.Show(erreurs, "Erreur de validation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Médicament ajouté avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ReinitialisierFormulaire();
             }
             catch (Exception ex)
             {

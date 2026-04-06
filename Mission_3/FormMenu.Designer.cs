@@ -34,6 +34,7 @@
             this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.donsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +46,8 @@
             this.supprimerToolStripMenuItem,
             this.ajouterToolStripMenuItem,
             this.modifierToolStripMenuItem,
-            this.creerToolStripMenuItem});
+            this.creerToolStripMenuItem,
+            this.donsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 28);
@@ -87,6 +89,13 @@
             this.creerToolStripMenuItem.Text = "Creer";
             this.creerToolStripMenuItem.Click += new System.EventHandler(this.creerToolStripMenuItem_Click);
             // 
+            // donsToolStripMenuItem
+            // 
+            this.donsToolStripMenuItem.Name = "donsToolStripMenuItem";
+            this.donsToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
+            this.donsToolStripMenuItem.Text = "Dons";
+            this.donsToolStripMenuItem.Click += new System.EventHandler(this.donsToolStripMenuItem_Click);
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -111,5 +120,6 @@
         private System.Windows.Forms.ToolStripMenuItem ajouterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem donsToolStripMenuItem;
     }
 }

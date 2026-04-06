@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace Mission_3
 {
-    public partial class FrmListeMed : Form
+    public partial class FormListeDons : Form
     {
         private gsbrapports2016Entities mesDonnees;
-        public FrmListeMed(gsbrapports2016Entities mesDonnees, string idmed)
+        public FormListeDons(gsbrapports2016Entities mesDonnees, string idmed)
         {
             InitializeComponent();
             this.mesDonnees = mesDonnees;
 
             // Médicaments de la famille AVEC au moins un don, triés par nb de dons décroissant
             var listeFiltree = mesDonnees.medicaments
-                .Where(m => m.idFamille == idmed)
+                .Where(m => m.idFamille == idmed && m.offrirs.Any())
                 .Select(m => new
                 {
                     m.id,
@@ -31,25 +31,13 @@ namespace Mission_3
                     m.contreIndications,
                     NbreDons = m.offrirs.Count()
                 })
+                .OrderByDescending(m => m.NbreDons)
                 .ToList();
 
-            dataGridView1.AutoGenerateColumns = true;
-            dataGridView1.DataSource = listeFiltree;
+            dataGridView2.AutoGenerateColumns = true;
+            dataGridView2.DataSource = listeFiltree;
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FormModifier3 formModifier = new FormModifier3();
-            formModifier.Show();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            FormSupprimer formSupprimer = new FormSupprimer();
-            formSupprimer.Show();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
